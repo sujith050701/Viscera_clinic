@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useEffect} from "react";
+
 import { useLocation } from "react-router-dom";
 import AppointmentHead from "./heading/appointmenthead";
 
@@ -40,6 +40,9 @@ Time: ${time}`;
         // Open WhatsApp
         window.open(whatsappLink, '_blank');
     };
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     return (
         <>

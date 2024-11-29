@@ -10,13 +10,15 @@ import ContentTwo from "./contenttwo";
 import Contentthree from "./contentthree";
 import About from "./about";
 import Appointment from "./appointment";
-import Service from "./service";
+
 import Doctor from "./doctors";
 
 
 
 function Home() {
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useEffect} from "react";
+
 
 import { useLocation, Link } from "react-router-dom";
 import AboutHead from "./heading/abouthead";
@@ -8,6 +9,9 @@ function About() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const textColorStyle = { color: "#333" }; 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div style={textColorStyle}>

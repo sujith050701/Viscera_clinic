@@ -1,9 +1,11 @@
-import React from "react";
+import React,{useEffect} from "react";
 
 
 
 function Service() {
-  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -32,7 +34,7 @@ function Service() {
             <div className="row g-5 mb-5">
               <div className="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style={{ minHeight: "400px" }}>
                 <div className="twentytwenty-container position-relative h-100 rounded overflow-hidden">
-                  <img className="position-absolute w-100 h-100" src="/asset/img/after.jpg" style={{ objectFit: "cover", maxHeight: "400px", transform: "translateY(2cm)" }} />
+                  <img className="position-absolute w-100 h-100" src="/asset/img/after.jpg" style={{ objectFit: "cover", maxHeight: "400px", transform: "translateY(2cm)" }} alt="Natural clinic treatment" />
                 </div>
               </div>
               <div className="col-lg-7">

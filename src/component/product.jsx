@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useLocation } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -9,7 +9,9 @@ import ProductHead from "./heading/producthead";
 function Product() {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
-    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     // Product data array
     const products = [
         {

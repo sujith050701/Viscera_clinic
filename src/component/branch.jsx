@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { 
   Card, 
   CardContent, 
@@ -12,7 +13,6 @@ import {
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import BranchHead from './heading/branchhead';
-import { useLocation } from 'react-router-dom';
 
 // Sample data - In a real application, this would typically come from an API
 const branches = [
@@ -50,7 +50,9 @@ const HospitalBranches = () => {
     // Handle contact button click
     console.log(`Contact clicked for branch ${branchId}`);
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       {!isHomePage && <BranchHead />}

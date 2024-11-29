@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import DoctorHead from "./heading/doctorhead";
 import { useLocation, Link } from "react-router-dom";
 
 function Doctor(){
         const location = useLocation();
         const isHomePage = location.pathname === "/";
-
+        useEffect(() => {
+          window.scrollTo(0, 0);
+        }, []);
         return(<>
             {!isHomePage && <DoctorHead/>}
              {/* Team Start */}

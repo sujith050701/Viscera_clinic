@@ -21,7 +21,10 @@ function Footer() {
             
             <div className="col-lg-4 col-md-6">
               <h3 className="text-white mb-4">Get In Touch</h3>
-              <p className="mb-2"><i className="bi bi-geo-alt text-primary me-2" />123 Street, New York, USA</p>
+              <p className="mb-2"><i className="bi bi-geo-alt text-primary me-2" />No.29, vaithiyanathapuram , Ellis Nagar, s s colony, Madurai Tamil Nadu
+
+Madurai Tamil Nadu
+India - 625016</p>
               <p className="mb-2"><i className="bi bi-envelope-open text-primary me-2" />stapas2010@gmail.com</p>
               <p className="mb-0"><i className="bi bi-telephone text-primary me-2" />+91 8925168697</p>
             </div>

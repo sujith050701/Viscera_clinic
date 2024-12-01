@@ -32,7 +32,7 @@ Date: ${date}
 Time: ${time}`;
 
         // Replace this with your clinic's phone number
-        const clinicPhone = "9791363808"; 
+        const clinicPhone = "+919791363808"; 
         
         // Create WhatsApp link with encoded message
         const whatsappLink = `https://wa.me/${clinicPhone}?text=${encodeURIComponent(message)}`;
@@ -63,8 +63,8 @@ Time: ${time}`;
                                     <form onSubmit={handleSubmit}>
                                         <div className="row g-3">
                                             <div className="col-12 col-sm-6">
-                                                <select className="form-select bg-light border-0" style={{"height":"55px"}}>
-                                                    <option selected>Select A Service</option>
+                                                <select className="form-select bg-light border-0" style={{"height":"55px"}} required>
+                                                    <option value="">Select A Service</option>
                                                     <option value={1}>Acupuncture</option>
                                                     <option value={2}>Acupressure</option>
                                                     <option value={3}>Naturopathy</option>
@@ -73,8 +73,8 @@ Time: ${time}`;
                                                 </select>
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <select className="form-select bg-light border-0" style={{"height":"55px"}}>
-                                                    <option selected>Select Practitioner</option>
+                                                <select className="form-select bg-light border-0" style={{"height":"55px"}} required>
+                                                    <option value="">Select Practitioner</option>
                                                     <option value={1}>Viscera Physician</option>
                                                     <option value={2}>Naturopathy</option>
                                                     <option value={3}>Acupuncturist</option>
@@ -82,10 +82,10 @@ Time: ${time}`;
                                                 </select>
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <input type="text" className="form-control bg-light border-0" placeholder="Your Name" style={{"height":"55px"}} />
+                                                <input type="text" className="form-control bg-light border-0" placeholder="Your Name" style={{"height":"55px"}} required />
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <input type="email" className="form-control bg-light border-0" placeholder="Your Email" style={{"height":"55px"}} />
+                                                <input type="email" className="form-control bg-light border-0" placeholder="Your Email" style={{"height":"55px"}} required />
                                             </div>
                                             <div className="col-12 col-sm-6">
                                                 <input 
@@ -93,6 +93,7 @@ Time: ${time}`;
                                                     className="form-control bg-light border-0" 
                                                     placeholder="Your Mobile Number" 
                                                     style={{"height":"55px"}}
+                                                    required
                                                 />
                                             </div>
                                             <div className="col-12 col-sm-6">
@@ -101,6 +102,7 @@ Time: ${time}`;
                                                         type="date" 
                                                         className="form-control bg-light border-0" 
                                                         style={{"height":"55px"}}
+                                                        required
                                                     />
                                                 </div>
                                             </div>
@@ -110,6 +112,7 @@ Time: ${time}`;
                                                         type="time" 
                                                         className="form-control bg-light border-0" 
                                                         style={{"height":"55px"}}
+                                                        required
                                                     />
                                                 </div>
                                             </div>

@@ -24,21 +24,24 @@ function ContactPage() {
                                         <i className="bi bi-geo-alt fs-1 text-primary me-3" />
                                         <div className="text-start">
                                             <h5 className="mb-0">Our Office</h5>
-                                            <span>123 Street, New York, USA</span>
+                                            <span>No.29, vaithiyanathapuram , Ellis Nagar, s s colony, Madurai Tamil Nadu
+
+Madurai Tamil Nadu
+India - 625016</span>
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center mb-2">
                                         <i className="bi bi-envelope-open fs-1 text-primary me-3" />
                                         <div className="text-start">
                                             <h5 className="mb-0">Email Us</h5>
-                                            <span>info@example.com</span>
+                                            <span>stapas2010@gmail.com</span>
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center">
                                         <i className="bi bi-phone-vibrate fs-1 text-primary me-3" />
                                         <div className="text-start">
                                             <h5 className="mb-0">Call Us</h5>
-                                            <span>+012 345 6789</span>
+                                            <span>+91 8925168697</span>
                                         </div>
                                     </div>
                                 </div>
@@ -47,16 +50,40 @@ function ContactPage() {
                                 <form>
                                     <div className="row g-3">
                                         <div className="col-12">
-                                            <input type="text" className="form-control border-0 bg-light px-4" placeholder="Your Name" style={{ "height": "55px" }} />
+                                            <input 
+                                                type="text" 
+                                                className="form-control border-0 bg-light px-4" 
+                                                placeholder="Your Name *" 
+                                                required
+                                                style={{ "height": "55px" }} 
+                                            />
                                         </div>
                                         <div className="col-12">
-                                            <input type="email" className="form-control border-0 bg-light px-4" placeholder="Your Email" style={{ "height": "55px" }} />
+                                            <input 
+                                                type="email" 
+                                                className="form-control border-0 bg-light px-4" 
+                                                placeholder="Your Email *" 
+                                                required
+                                                style={{ "height": "55px" }} 
+                                            />
                                         </div>
                                         <div className="col-12">
-                                            <input type="text" className="form-control border-0 bg-light px-4" placeholder="Subject" style={{ "height": "55px" }} />
+                                            <input 
+                                                type="text" 
+                                                className="form-control border-0 bg-light px-4" 
+                                                placeholder="Subject *" 
+                                                required
+                                                style={{ "height": "55px" }} 
+                                            />
                                         </div>
                                         <div className="col-12">
-                                            <textarea className="form-control border-0 bg-light px-4 py-3" rows={5} placeholder="Message" defaultValue={""} />
+                                            <textarea 
+                                                className="form-control border-0 bg-light px-4 py-3" 
+                                                rows={5} 
+                                                placeholder="Message *" 
+                                                required
+                                                defaultValue={""} 
+                                            />
                                         </div>
                                         <div className="col-12">
                                             <button className="btn btn-primary w-100 py-3" type="submit">Send Message</button>

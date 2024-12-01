@@ -4,7 +4,7 @@ function Topbar(){
         return(
             <>
             {/* Topbar Start */}
-  <div className="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
+  <div className="container-fluid bg-light ps-5 pe-0">
     <div className="row gx-0">
       <div className="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
         <div className="d-inline-flex align-items-center">

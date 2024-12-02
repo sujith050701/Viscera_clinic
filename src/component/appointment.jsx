@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 import AppointmentHead from "./heading/appointmenthead";
@@ -9,7 +9,7 @@ function Appointment() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         // Get form values
         const service = e.target.elements[0].value;
         const practitioner = e.target.elements[1].value;
@@ -32,23 +32,23 @@ Date: ${date}
 Time: ${time}`;
 
         // Replace this with your clinic's phone number
-        const clinicPhone = "+919791363808"; 
-        
+        const clinicPhone = "+919791363808";
+
         // Create WhatsApp link with encoded message
         const whatsappLink = `https://wa.me/${clinicPhone}?text=${encodeURIComponent(message)}`;
-        
+
         // Open WhatsApp
         window.open(whatsappLink, '_blank');
     };
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
 
     return (
         <>
             <div>
                 {isAppointmentPage && <AppointmentHead />}
-                <div className="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{"margin-top":"90px"}}>
+                <div className="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{ "margin-top": "90px" }}>
                     <div className="container">
                         <div className="row gx-5">
                             <div className="col-lg-6 py-5">
@@ -63,7 +63,7 @@ Time: ${time}`;
                                     <form onSubmit={handleSubmit}>
                                         <div className="row g-3">
                                             <div className="col-12 col-sm-6">
-                                                <select className="form-select bg-light border-0" style={{"height":"55px"}} required>
+                                                <select className="form-select bg-light border-0" style={{ "height": "55px" }} required>
                                                     <option value="">Select A Service</option>
                                                     <option value={1}>Acupuncture</option>
                                                     <option value={2}>Acupressure</option>
@@ -73,7 +73,7 @@ Time: ${time}`;
                                                 </select>
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <select className="form-select bg-light border-0" style={{"height":"55px"}} required>
+                                                <select className="form-select bg-light border-0" style={{ "height": "55px" }} required>
                                                     <option value="">Select Practitioner</option>
                                                     <option value={1}>Viscera Physician</option>
                                                     <option value={2}>Naturopathy</option>
@@ -82,43 +82,71 @@ Time: ${time}`;
                                                 </select>
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <input type="text" className="form-control bg-light border-0" placeholder="Your Name" style={{"height":"55px"}} required />
+                                                <select className="form-select bg-light border-0" style={{ "height": "55px" }} required>
+                                                    <option value="">Select Branch</option>
+                                                    <option value="Madurai">Madurai</option>
+                                                    <option value="Chennai">Chennai</option>
+                                                    <option value="Thiruchirapalli">Thiruchirapalli</option>
+                                                    <option value="Coimbatore">Coimbatore</option>
+                                                    <option value="Ernakulam">Ernakulam</option>
+                                                </select>
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <input type="email" className="form-control bg-light border-0" placeholder="Your Email" style={{"height":"55px"}} required />
+                                                <input type="text" className="form-control bg-light border-0" placeholder="Your Name" style={{ "height": "55px" }} required />
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <input 
-                                                    type="tel" 
-                                                    className="form-control bg-light border-0" 
-                                                    placeholder="Your Mobile Number" 
-                                                    style={{"height":"55px"}}
+                                                <input type="email" className="form-control bg-light border-0" placeholder="Your Email" style={{ "height": "55px" }} required />
+                                            </div>
+                                            <div className="col-12 col-sm-6">
+                                                <input
+                                                    type="tel"
+                                                    className="form-control bg-light border-0"
+                                                    placeholder="Your Mobile Number"
+                                                    style={{ "height": "55px" }}
                                                     required
                                                 />
                                             </div>
                                             <div className="col-12 col-sm-6">
+                                                <label htmlFor="date-input" className="form-label text-white">
+                                                    Select Date (DD/MM/YYYY)
+                                                </label>
                                                 <div className="date">
-                                                    <input 
-                                                        type="date" 
-                                                        className="form-control bg-light border-0" 
-                                                        style={{"height":"55px"}}
+                                                    <input
+                                                        id="date-input"
+                                                        type="date"
+                                                        className="form-control bg-light border-0"
+                                                        style={{
+                                                            height: "55px",
+                                                            colorScheme: "light",
+                                                        }}
+                                                        min={new Date().toISOString().split("T")[0]}
                                                         required
                                                     />
                                                 </div>
                                             </div>
                                             <div className="col-12 col-sm-6">
+                                                <label htmlFor="time-input" className="form-label text-white">
+                                                    Select Time(9:00 AM - 6:00 PM)
+                                                </label>
                                                 <div className="time">
-                                                    <input 
-                                                        type="time" 
-                                                        className="form-control bg-light border-0" 
-                                                        style={{"height":"55px"}}
+                                                    <input
+                                                        id="time-input"
+                                                        type="time"
+                                                        className="form-control bg-light border-0"
+                                                        style={{
+                                                            height: "55px",
+                                                            colorScheme: "light",
+                                                        }}
+                                                        min="09:00"
+                                                        max="18:00"
                                                         required
                                                     />
                                                 </div>
                                             </div>
+
                                             <div className="col-12">
                                                 <button className="btn btn-dark w-100 py-3" type="submit">
-                                                    Appointment 
+                                                    Appointment
                                                 </button>
                                             </div>
                                         </div>

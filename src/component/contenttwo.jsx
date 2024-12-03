@@ -11,7 +11,7 @@ function ContentTwo() {
                 <div id="header-carousel" className="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img className="w-100" src="/asset/img/carousel-1.jpg" alt="mage" />
+                            <img className="w-100" src="/asset/img/carousel-1.jpg" alt="image" />
                                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div className="p-3" style={{ maxWidth: "900px" }}>
                                         <h5 className="text-white text-uppercase mb-3 animated slideInDown">Let food be thy medicine, and let nature be thy healer</h5>
@@ -22,7 +22,7 @@ function ContentTwo() {
                                 </div>
                         </div>
                         <div className="carousel-item">
-                            <img className="w-100" src="/asset/img/carousel-2.jpg" alt="mage" />
+                            <img className="w-100" src="/asset/img/carousel-2.jpg" alt="image" />
                                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div className="p-3" style={{ maxWidth: "900px" }}>
                                         <h5 className="text-white text-uppercase mb-3 animated slideInDown">Let food be thy medicine, and let nature be thy healer</h5>

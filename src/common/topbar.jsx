@@ -6,8 +6,8 @@ function Topbar() {
       {/* Topbar Start */}
       <div className="container-fluid bg-light px-3 px-lg-5">
         <div className="row gx-0">
-          <div className="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
-            <div className="d-flex align-items-center justify-content-center justify-content-lg-start">
+          <div className="col-md-6 text-center mb-2 mb-lg-0">
+            <div className="d-flex align-items-center justify-content-center">
               <small className="py-2">
                 <i className="far fa-clock text-primary me-2" />
                 Opening Hours: 10:00 A.M to 8:00 P.M

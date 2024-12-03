@@ -89,16 +89,7 @@ h6,
     z-index: 99;
 }
 
-.top-shape::before {
-    position: absolute;
-    content: "";
-    width: 35px;
-    height: 100%;
-    top: 0;
-    left: -17px;
-    background: var(--primary);
-    transform: skew(40deg);
-}
+
 
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Jost', sans-serif;

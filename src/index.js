@@ -6,12 +6,14 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import reportWebVitals from './reportWebVitals';
 
 import Main from './component/main';
+import Dashboard from './admin/dashboard';
+import Home from './component/home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Main/>
-  </React.StrictMode>
+      <Main/>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

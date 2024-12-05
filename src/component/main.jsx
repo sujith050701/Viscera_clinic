@@ -17,6 +17,8 @@ import Doctor from "./doctors";
 import Gallery from "./gallery";
 import Testimonial from "./testimonial";
 import Login from "../user/login";
+import AdminLogin from "../admin/adminlogin";
+import Dashboard from "../admin/dashboard";
 function Main() {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -38,6 +40,8 @@ function Main() {
                     <Route path="/gallery" element={<Gallery />} />
                     <Route path="/testimonial" element={<Testimonial />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/adminlogin" element={<AdminLogin />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="*" element={<Home />} />
                 </Routes>
                 <News/>

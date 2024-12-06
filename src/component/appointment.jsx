@@ -47,7 +47,7 @@ console.log("Submitting appointment data:", appointmentData);
 
         // Make a POST request
         axios
-            .post("http://192.168.1.12:4001/appointment/crt", appointmentData)
+            .post("http://192.168.112.4:4001/appointment/crt", appointmentData)
             .then((response) => {
                 console.log("Response from server:", response);
                 if (response.status === 201) {

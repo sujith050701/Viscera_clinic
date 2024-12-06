@@ -21,7 +21,7 @@ const Dashboard = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Fetch data from the backend
-    axios.get('http://192.168.112.4:4001/appointment/get')
+    axios.get('http://192.168.1.12:4001/appointment/get')
       .then(response => {
         console.log('Fetched appointments:', response.data);
         // If the response has a "data" key, use it (adjust based on your response structure)
@@ -37,7 +37,7 @@ const Dashboard = () => {
   // Individual delete function
   const handleDelete = (appointmentId) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
-      axios.delete(`http://192.168.112.4:4001/appointment/${appointmentId}`)
+      axios.delete(`http://192.168.1.12:4001/appointment/${appointmentId}`)
         .then(response => {
           // Remove the appointment from the state
           setAppointments(appointments.filter(app => app._id !== appointmentId));
@@ -53,7 +53,7 @@ const Dashboard = () => {
   // Delete all function
   const handleDeleteAll = () => {
     if (window.confirm('Are you sure you want to delete all appointments? This action cannot be undone.')) {
-      axios.delete('http://192.168.112.4:4001/appointment/deleteAll')
+      axios.delete('http://192.168.1.12:4001/appointment/deleteAll')
         .then(response => {
           setAppointments([]);
           alert('All appointments deleted successfully');

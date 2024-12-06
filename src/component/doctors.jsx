@@ -11,6 +11,17 @@ function Doctor(){
         return(<>
             {!isHomePage && <DoctorHead/>}
             
+            {/* Admin Panel Button - Only show when not on home page */}
+            {!isHomePage && (
+                <div className="container-fluid py-3">
+                    <div className="container">
+                        <div className="text-end">
+                            <Link to="/adminlogin" className="btn btn-primary">Admin Panel</Link>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Team Start */}
             <div className="container-fluid py-5">
                 <div className="container">
@@ -111,17 +122,6 @@ function Doctor(){
                 </div>
             </div>
             {/* Team End */}  
-            
-            {/* Admin Panel Button - Only show when not on home page */}
-            {!isHomePage && (
-                <div className="container-fluid py-3">
-                    <div className="container">
-                        <div className="text-end">
-                            <Link to="/adminlogin" className="btn btn-primary">Admin Panel</Link>
-                        </div>
-                    </div>
-                </div>
-            )}
         </>)
 
 }

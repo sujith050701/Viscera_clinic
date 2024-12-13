@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import About from "./about";
@@ -19,10 +19,13 @@ import Testimonial from "./testimonial";
 import Login from "../user/login";
 import AdminLogin from "../admin/adminlogin";
 import Dashboard from "../admin/dashboard";
+import UserDashboard from "../user/userdashboard";
 function Main() {
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);
+      const [token, setToken] = useState("");
+      const [userId,setuserId] = useState("");
     return (
         <Router>
             <div className="app-container">
@@ -41,8 +44,9 @@ function Main() {
                     <Route path="/testimonial" element={<Testimonial />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/adminlogin" element={<AdminLogin />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="*" element={<Home />} />
+                    <Route path="/dashboard" element={<Dashboard id={userId} />} />
+                    <Route path="/userdashboard" element={<UserDashboard token={token}/>} />
+                    <Route path="/" element={<Home />} />
                 </Routes>
                 <News/>
                 <Footer/>

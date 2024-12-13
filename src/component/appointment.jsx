@@ -1,70 +1,93 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AppointmentHead from "./heading/appointmenthead";
 
 function Appointment() {
     const location = useLocation();
+    const navigate = useNavigate();
     const isAppointmentPage = location.pathname === "/appointment";
     const [showSuccess, setShowSuccess] = useState(false);
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+    
+        // If no token is found, redirect to login
+        if (!token) {
+            alert("You must be logged in to book an appointment.");
+            navigate("/login");
+        }
+    }, [navigate]);
+    
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
- // Retrieve form values safely
-const formElements = e.target.elements;
-const dateInput = formElements["date-input"].value; // YYYY-MM-DD from the date input
-
-// Parse the input date and convert to DD-MM-YYYY for validation
-const [year, month, day] = dateInput.split("-");
-const formattedInputDate = `${Number(day) + 1}-${month}-${year}`; // Fixed issue here
-
-// Convert input date to Date object for comparison
-const selectedDate = new Date(`${year}-${month}-${day}`);
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-if (selectedDate <= today) {
-    alert(`Invalid date. Please provide a future date in DD-MM-YYYY format.`);
-    return;
-}
-
-const formattedDate = formattedInputDate; // Keep DD-MM-YYYY format for submission
-
-// Create the appointment data object
-const appointmentData = {
-    service: formElements[0].value,
-    practitioner: formElements[1].value,
-    branch: formElements[2].value,
-    name: formElements[3].value,
-    email: formElements[4].value,
-    mobile: formElements[5].value,
-    date: formattedDate, // Use the formatted date
-};
-
-console.log("Submitting appointment data:", appointmentData);
-
-
-        // Make a POST request
-        axios
-            .post("http://192.168.112.4:4001/appointment/crt", appointmentData)
-            .then((response) => {
-                console.log("Response from server:", response);
-                if (response.status === 201) {
-                    setShowSuccess(true);
-                    e.target.reset(); // Clear the form
-                } else {
-                    console.error("Unexpected response:", response);
-                    alert("Unexpected server response. Please try again.");
+    
+        // Retrieve form values safely
+        const formElements = e.target.elements;
+        const dateInput = formElements["date-input"].value; // YYYY-MM-DD from the date input
+    
+        // Parse the input date and convert to DD-MM-YYYY for validation
+        const [year, month, day] = dateInput.split("-");
+        const formattedInputDate = `${Number(day)}-${month}-${year}`;
+    
+        const selectedDate = new Date(`${year}-${month}-${day}`);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+    
+        if (selectedDate <= today) {
+            alert(`Invalid date. Please provide a future date in DD-MM-YYYY format.`);
+            return;
+        }
+    
+        const appointmentData = {
+            service: formElements[0].value,
+            practitioner: formElements[1].value,
+            branch: formElements[2].value,
+            name: formElements[3].value,
+            email: formElements[4].value,
+            mobile: formElements[5].value,
+            date: formattedInputDate,
+        };
+    
+        console.log("Submitting appointment data:", appointmentData);
+    
+        const token = localStorage.getItem("token"); // Get the token
+    
+        if (!token) {
+            alert("Authentication token not found. Please log in again.");
+            navigate("/login"); // Redirect if token is not present
+            return;
+        }
+    
+        // Make API request
+        try {
+            const response = await axios.post(
+                "http://192.168.133.4:6009/api/appointments/create",
+                appointmentData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            })
-            .catch((error) => {
-                const errorMessage = error.response?.data?.message || "Failed to schedule appointment. Please try again.";
-                alert(errorMessage);
-                console.error("Error scheduling appointment:", error);
-            });
+            );
+    
+            if (response.status === 201) {
+                setShowSuccess(true);
+                e.target.reset(); // Clear the form
+            } else {
+                alert("Unexpected server response. Please try again.");
+            }
+        } catch (error) {
+            const errorMessage =
+                error.response?.data?.message ||
+                "Failed to schedule appointment. Please try again.";
+            alert(errorMessage);
+            console.error("Error scheduling appointment:", error);
+        }
     };
-
+    
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

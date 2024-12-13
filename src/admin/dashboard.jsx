@@ -21,27 +21,33 @@ const Dashboard = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Fetch data from the backend
-    axios.get('http://192.168.112.4:4001/appointment/get')
+    axios.get('http://192.168.133.4:6009/api/appointments/get')
       .then(response => {
-        console.log('Fetched appointments:', response.data);
-        // If the response has a "data" key, use it (adjust based on your response structure)
-        setAppointments(response.data);  // Modify if your response is nested inside 'data'
-        setLoading(false); // Set loading to false once the data is fetched
+        console.log('Fetched appointments:', response.data.data); // Log data to debug
+        setAppointments(response.data.data); // Update state with the correct key
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching appointments:', error);
-        setLoading(false); // Set loading to false in case of error
+        setLoading(false);
       });
-  }, []);
 
+  }, []);
+  const userId = localStorage.getItem("userId");
+  console.log(userId)
   // Individual delete function
-  const handleDelete = (appointmentId) => {
+  const handleDelete = (userId) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
-      axios.delete(`http://192.168.112.4:4001/appointment/${appointmentId}`)
+      // Add token or headers if necessary
+      axios.delete(`http://192.168.133.4:6009/api/appointments/delete/${userId}`)
         .then(response => {
-          // Remove the appointment from the state
-          setAppointments(appointments.filter(app => app._id !== appointmentId));
-          alert('Appointment deleted successfully');
+          if (response.status === 200 || response.status === 204) {
+            // If the response status is success, filter the appointment out of the state
+            setAppointments(prevAppointments => prevAppointments.filter(app => app._id !== userId));
+            alert('Appointment deleted successfully');
+          } else {
+            alert('Failed to delete appointment');
+          }
         })
         .catch(error => {
           console.error('Error deleting appointment:', error);
@@ -53,14 +59,19 @@ const Dashboard = () => {
   // Delete all function
   const handleDeleteAll = () => {
     if (window.confirm('Are you sure you want to delete all appointments? This action cannot be undone.')) {
-      axios.delete('http://192.168.112.4:4001/appointment/deleteAll')
+      // Add token or headers if necessary
+      axios.delete('http://192.168.133.4:6009/api/appointments/delete/all')
         .then(response => {
-          setAppointments([]);
-          alert('All appointments deleted successfully');
+          if (response.status === 200 || response.status === 204) {
+            setAppointments([]); // Clear the state if the deletion is successful
+            alert('All appointments deleted successfully');
+          } else {
+            alert('Failed to delete all appointments');
+          }
         })
         .catch(error => {
-          console.error('Error deleting appointments:', error);
-          alert('Failed to delete appointments');
+          console.error('Error deleting all appointments:', error);
+          alert('Failed to delete all appointments');
         });
     }
   };
@@ -78,7 +89,7 @@ const Dashboard = () => {
         <nav className="sidebar-nav">
           <ul>
             <li className="active" onClick={() => handleNavigation('/admin')}><FaChartLine /> Appointments</li>
-                        
+
           </ul>
         </nav>
       </div>
@@ -91,18 +102,18 @@ const Dashboard = () => {
           </button>
           <div className="header-right">
             <span>Admin Name:Senthilkumar</span>
-                     </div>
+          </div>
         </header>
 
         {/* Dashboard Content */}
         <div className="dashboard-content">
-          
+
 
           {/* Recent Appointments */}
           <div className="appointments-section">
             <div className="appointments-header">
               <h2>Recent Appointments</h2>
-              <button 
+              <button
                 onClick={handleDeleteAll}
                 className="delete-all-btn"
                 title="Delete all appointments"
@@ -110,6 +121,9 @@ const Dashboard = () => {
                 <FaTrash /> Delete All Appointments
               </button>
             </div>
+            const userId = localStorage.getItem("userId");
+            console.log(userId)
+
             <div className="table-responsive">
               <table className="appointments-table">
                 <thead>
@@ -119,15 +133,16 @@ const Dashboard = () => {
                     <th>Service</th>
                     <th>Branch</th>
                     <th>Date</th>
-                    <th>Time</th>
+
                     <th>Contact</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {loading ? (
                     <tr><td colSpan="8">Loading appointments...</td></tr>
-                  ) : appointments.length > 0 ? (
+                  ) : appointments && appointments.length > 0 ? (
                     appointments.map((appointment, index) => (
                       <tr key={index}>
                         <td>{appointment?.name || 'N/A'}</td>
@@ -135,19 +150,20 @@ const Dashboard = () => {
                         <td>{appointment?.service || 'N/A'}</td>
                         <td>{appointment?.branch || 'N/A'}</td>
                         <td>{appointment?.date ? new Date(appointment.date).toLocaleDateString() : 'N/A'}</td>
-                        <td>{appointment?.time ? `${appointment.time}:00` : 'N/A'}</td>
+
                         <td>
                           {appointment?.email || 'N/A'}<br />
                           {appointment?.mobile || 'N/A'}
                         </td>
                         <td>
-                          <button 
-                            onClick={() => handleDelete(appointment._id)}
+                          <button
+                            onClick={() => handleDelete(appointment._id)} // Pass the appointment's _id
                             className="delete-btn"
                             title="Delete appointment"
                           >
                             <FaTrash />
                           </button>
+
                         </td>
                       </tr>
                     ))
@@ -155,6 +171,7 @@ const Dashboard = () => {
                     <tr><td colSpan="8">No appointments found</td></tr>
                   )}
                 </tbody>
+
               </table>
             </div>
           </div>

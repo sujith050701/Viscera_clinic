@@ -121,9 +121,7 @@ const Dashboard = () => {
                 <FaTrash /> Delete All Appointments
               </button>
             </div>
-            const userId = localStorage.getItem("userId");
-            console.log(userId)
-
+           
             <div className="table-responsive">
               <table className="appointments-table">
                 <thead>

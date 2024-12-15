@@ -7,9 +7,11 @@ const UserDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   useEffect(() => {
     const fetchAppointments = async () => {
       setError(""); // Reset error before making the request
@@ -57,15 +59,36 @@ const UserDashboard = () => {
       <h1>Appointment History</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {appointments.length > 0 ? (
-        appointments.map((appt) => (
-          <div key={appt._id}>
-            <p>
-              Date: {new Date(appt.date).toLocaleDateString()} <br />
-              Service: {appt.service || "Unknown Doctor"} <br />
-              Status: {appt.status}
-            </p>
-          </div>
-        ))
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse", // This will ensure borders are merged between cells
+            marginTop: "20px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th style={{ padding: "10px", textAlign: "left", border: "1px solid #ddd" }}>Date</th>
+              <th style={{ padding: "10px", textAlign: "left", border: "1px solid #ddd" }}>Service</th>
+              <th style={{ padding: "10px", textAlign: "left", border: "1px solid #ddd" }}>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {appointments.map((appt) => (
+              <tr key={appt._id}>
+                <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                  {new Date(appt.date).toLocaleDateString()}
+                </td>
+                <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                  {appt.service || "Unknown Doctor"}
+                </td>
+                <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                  {appt.status}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <p>No appointments found.</p>
       )}

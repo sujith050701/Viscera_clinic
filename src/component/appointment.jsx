@@ -10,36 +10,38 @@ function Appointment() {
     const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-    
-        // If no token is found, redirect to login
-        if (!token) {
-            alert("You must be logged in to book an appointment.");
-            navigate("/login");
+        // Only check login status on the appointment page
+        if (isAppointmentPage) {
+            const token = localStorage.getItem("token");
+
+            // If no token is found, redirect to login
+            if (!token) {
+                alert("You must be logged in to book an appointment.");
+                navigate("/login");
+            }
         }
-    }, [navigate]);
-    
+    }, [isAppointmentPage, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Retrieve form values safely
         const formElements = e.target.elements;
         const dateInput = formElements["date-input"].value; // YYYY-MM-DD from the date input
-    
+
         // Parse the input date and convert to DD-MM-YYYY for validation
         const [year, month, day] = dateInput.split("-");
         const formattedInputDate = `${Number(day)}-${month}-${year}`;
-    
+
         const selectedDate = new Date(`${year}-${month}-${day}`);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-    
+
         if (selectedDate <= today) {
             alert(`Invalid date. Please provide a future date in DD-MM-YYYY format.`);
             return;
         }
-    
+
         const appointmentData = {
             service: formElements[0].value,
             practitioner: formElements[1].value,
@@ -49,17 +51,17 @@ function Appointment() {
             mobile: formElements[5].value,
             date: formattedInputDate,
         };
-    
+
         console.log("Submitting appointment data:", appointmentData);
-    
+
         const token = localStorage.getItem("token"); // Get the token
-    
+
         if (!token) {
             alert("Authentication token not found. Please log in again.");
             navigate("/login"); // Redirect if token is not present
             return;
         }
-    
+
         // Make API request
         try {
             const response = await axios.post(
@@ -71,7 +73,7 @@ function Appointment() {
                     },
                 }
             );
-    
+
             if (response.status === 201) {
                 setShowSuccess(true);
                 e.target.reset(); // Clear the form
@@ -86,8 +88,7 @@ function Appointment() {
             console.error("Error scheduling appointment:", error);
         }
     };
-    
-    
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

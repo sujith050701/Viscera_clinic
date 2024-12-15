@@ -268,3 +268,83 @@
   .sidebar.active + .main-content {
     padding-left: 250px; /* Adjust based on your sidebar width */
   }
+  /* Basic styling for the modal */
+/* Modal Styling */
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is above other content */
+  overflow-y: auto; /* Allow scrolling for the modal if content overflows */
+}
+
+.edit-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-height: 80vh; /* Prevent the form from growing too large */
+  overflow-y: auto; /* Enable scrolling within the form */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.edit-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: block;
+  margin: 10px 0;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.submit-btn, .cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Adjust the page content */
+.dashboard-content {
+  margin: 20px;
+  padding-top: 10px;
+}
+
+/* Ensure the navbar doesn't overlap with the modal */
+.dashboard-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999; /* Keep navbar above content but below modal */
+}

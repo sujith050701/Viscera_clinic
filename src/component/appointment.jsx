@@ -8,28 +8,28 @@ function Appointment() {
     const navigate = useNavigate();
     const isAppointmentPage = location.pathname === "/appointment";
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showLoginMessage, setShowLoginMessage] = useState(false); // State to show login message
 
     useEffect(() => {
-        // Only check login status on the appointment page
         if (isAppointmentPage) {
             const token = localStorage.getItem("token");
-
-            // If no token is found, redirect to login
             if (!token) {
-                alert("You must be logged in to book an appointment.");
-                navigate("/login");
+                setShowLoginMessage(true); // Show login message if not logged in
             }
         }
-    }, [isAppointmentPage, navigate]);
+    }, [isAppointmentPage]);
+
+    const redirectToLogin = () => {
+        navigate("/login");
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Retrieve form values safely
         const formElements = e.target.elements;
-        const dateInput = formElements["date-input"].value; // YYYY-MM-DD from the date input
+        const dateInput = formElements["date-input"].value;
 
-        // Parse the input date and convert to DD-MM-YYYY for validation
+        // Format date
         const [year, month, day] = dateInput.split("-");
         const formattedInputDate = `${Number(day)}-${month}-${year}`;
 
@@ -54,15 +54,12 @@ function Appointment() {
 
         console.log("Submitting appointment data:", appointmentData);
 
-        const token = localStorage.getItem("token"); // Get the token
-
+        const token = localStorage.getItem("token");
         if (!token) {
-            alert("Authentication token not found. Please log in again.");
-            navigate("/login"); // Redirect if token is not present
+            setShowLoginMessage(true);
             return;
         }
 
-        // Make API request
         try {
             const response = await axios.post(
                 "http://192.168.133.4:6009/api/appointments/create",
@@ -76,7 +73,7 @@ function Appointment() {
 
             if (response.status === 201) {
                 setShowSuccess(true);
-                e.target.reset(); // Clear the form
+                e.target.reset();
             } else {
                 alert("Unexpected server response. Please try again.");
             }
@@ -89,49 +86,75 @@ function Appointment() {
         }
     };
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     return (
         <>
-            <div>
-                {showSuccess && (
-                    <div className="position-fixed top-50 start-50 translate-middle" 
-                         style={{
-                             zIndex: 1050,
-                             backgroundColor: 'white',
-                             padding: '20px',
-                             borderRadius: '8px',
-                             boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-                             textAlign: 'center',
-                             minWidth: '300px'
-                         }}>
+            {/* Login Prompt */}
+            {showLoginMessage && (
+                <>
+                    <div
+                        className="position-fixed top-50 start-50 translate-middle"
+                        style={{
+                            zIndex: 1050,
+                            backgroundColor: "white",
+                            padding: "20px",
+                            borderRadius: "8px",
+                            boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+                            textAlign: "center",
+                            minWidth: "300px",
+                        }}
+                    >
+                        <h4 className="mb-3">Please Log In</h4>
+                        <p className="mb-4">You must be logged in to book an appointment.</p>
+                        <button className="btn btn-primary" onClick={redirectToLogin}>
+                            Go to Login
+                        </button>
+                    </div>
+                    <div
+                        className="position-fixed top-0 start-0 w-100 h-100"
+                        style={{
+                            backgroundColor: "rgba(0,0,0,0.5)",
+                            zIndex: 1040,
+                        }}
+                    ></div>
+                </>
+            )}
+
+            {/* Success Message */}
+            {showSuccess && (
+                <>
+                    <div
+                        className="position-fixed top-50 start-50 translate-middle"
+                        style={{
+                            zIndex: 1050,
+                            backgroundColor: "white",
+                            padding: "20px",
+                            borderRadius: "8px",
+                            boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+                            textAlign: "center",
+                            minWidth: "300px",
+                        }}
+                    >
                         <div className="mb-3">
-                            <i className="fas fa-check-circle text-success" 
-                               style={{ fontSize: '3rem' }}></i>
+                            <i className="fas fa-check-circle text-success" style={{ fontSize: "3rem" }}></i>
                         </div>
                         <h4 className="mb-3">Appointment Created Successfully!</h4>
                         <p className="mb-4">Thank you for choosing Viscera Clinic.</p>
-                        <button 
-                            className="btn btn-primary"
-                            onClick={() => setShowSuccess(false)}>
+                        <button className="btn btn-primary" onClick={() => setShowSuccess(false)}>
                             OK
                         </button>
                     </div>
-                )}
-
-                {showSuccess && (
-                    <div 
+                    <div
                         className="position-fixed top-0 start-0 w-100 h-100"
                         style={{
-                            backgroundColor: 'rgba(0,0,0,0.5)',
-                            zIndex: 1040
+                            backgroundColor: "rgba(0,0,0,0.5)",
+                            zIndex: 1040,
                         }}
-                        onClick={() => setShowSuccess(false)}
                     ></div>
-                )}
+                </>
+            )}
 
+            {/* Appointment Page */}
+            <div>
                 {isAppointmentPage && <AppointmentHead />}
                 <div
                     className="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp"
@@ -218,27 +241,17 @@ function Appointment() {
                                                 />
                                             </div>
                                             <div className="col-12 col-sm-6">
-                                                <label htmlFor="date-input" className="form-label text-white">
-                                                    Select Date
-                                                </label>
-                                                <div className="date">
-                                                    <input
-                                                        id="date-input"
-                                                        name="date-input"
-                                                        type="date"
-                                                        className="form-control bg-light border-0"
-                                                        style={{
-                                                            height: "55px",
-                                                            colorScheme: "light",
-                                                        }}
-                                                        min={new Date().toISOString().split("T")[0]}
-                                                        required
-                                                    />
-                                                </div>
+                                                <input
+                                                    type="date"
+                                                    name="date-input"
+                                                    className="form-control bg-light border-0"
+                                                    style={{ height: "55px" }}
+                                                    required
+                                                />
                                             </div>
                                             <div className="col-12">
                                                 <button className="btn btn-dark w-100 py-3" type="submit">
-                                                    Schedule Appointment
+                                                    Make Appointment
                                                 </button>
                                             </div>
                                         </div>

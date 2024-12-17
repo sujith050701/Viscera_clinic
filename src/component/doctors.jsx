@@ -37,12 +37,6 @@ function Doctor(){
                             <div className="team-item">
                                 <div className="position-relative rounded-top" style={{"z-index":"1"}}>
                                     <img className="img-fluid rounded-top w-100" src="/asset/img/team-1.jpg" alt="" />
-                                    <div className="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-twitter fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-facebook-f fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-linkedin-in fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-instagram fw-normal" /></a>
-                                    </div>
                                 </div>
                                 <div className="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
                                     <h4 className="mb-2">Dr. John Doe</h4>
@@ -54,12 +48,6 @@ function Doctor(){
                             <div className="team-item">
                                 <div className="position-relative rounded-top" style={{"z-index":"1"}}>
                                     <img className="img-fluid rounded-top w-100" src="/asset/img/team-2.jpg" alt />
-                                    <div className="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-twitter fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-facebook-f fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-linkedin-in fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-instagram fw-normal" /></a>
-                                    </div>
                                 </div>
                                 <div className="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
                                     <h4 className="mb-2">Dr. John Doe</h4>
@@ -71,12 +59,6 @@ function Doctor(){
                             <div className="team-item">
                                 <div className="position-relative rounded-top" style={{"z-index":"1"}}>
                                     <img className="img-fluid rounded-top w-100" src="/asset/img/team-3.jpg" alt />
-                                    <div className="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-twitter fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-facebook-f fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-linkedin-in fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-instagram fw-normal" /></a>
-                                    </div>
                                 </div>
                                 <div className="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
                                     <h4 className="mb-2">Dr. John Doe</h4>
@@ -88,12 +70,6 @@ function Doctor(){
                             <div className="team-item">
                                 <div className="position-relative rounded-top" style={{"z-index":"1"}}>
                                     <img className="img-fluid rounded-top w-100" src="/asset/img/team-4.jpg" alt />
-                                    <div className="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-twitter fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-facebook-f fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-linkedin-in fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-instagram fw-normal" /></a>
-                                    </div>
                                 </div>
                                 <div className="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
                                     <h4 className="mb-2">Dr. John Doe</h4>
@@ -105,12 +81,6 @@ function Doctor(){
                             <div className="team-item">
                                 <div className="position-relative rounded-top" style={{"z-index":"1"}}>
                                     <img className="img-fluid rounded-top w-100" src="/asset/img/team-5.jpg" alt />
-                                    <div className="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-twitter fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-facebook-f fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-linkedin-in fw-normal" /></a>
-                                        <a className="btn btn-primary btn-square m-1"><i className="fab fa-instagram fw-normal" /></a>
-                                    </div>
                                 </div>
                                 <div className="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
                                     <h4 className="mb-2">Dr. John Doe</h4>

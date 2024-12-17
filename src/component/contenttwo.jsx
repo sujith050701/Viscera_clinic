@@ -17,7 +17,7 @@ function ContentTwo() {
                                         <h5 className="text-white text-uppercase mb-3 animated slideInDown">Let food be thy medicine, and let nature be thy healer</h5>
                                         <h1 className="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Holistic Therapies Treatment</h1>
                                         <Link className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" to="/appointment">Appointment</Link>
-                                        <Link className="btn btn-secondary py-md-3 px-md-5 me-3 animated slideInRight" to="/login">User Login</Link>
+                                        <Link className="btn btn-secondary py-md-3 px-md-5 me-3 animated slideInRight" to="/contact">Contact Us</Link>
                                     </div>
                                 </div>
                         </div>
@@ -29,7 +29,7 @@ function ContentTwo() {
                                         <h1 className="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Holistic Therapies Treatment</h1>
                                         <Link className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" to="/appointment">Appointment</Link>
                                         <Link className="btn btn-secondary py-md-3 px-md-5 me-3 animated slideInRight" to="/contact">Contact Us</Link>
-                                        <Link className="btn btn-success py-md-3 px-md-5 me-3 animated slideInRight" to="/login">Login</Link>
+
                                     </div>
                                 </div>
                         </div>

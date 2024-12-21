@@ -62,7 +62,7 @@ function Appointment() {
 
         try {
             const response = await axios.post(
-                "http://192.168.133.4:6009/api/appointments/create",
+                "http://192.168.2.4:6009/api/appointments/create",
                 appointmentData,
                 {
                     headers: {
@@ -74,6 +74,7 @@ function Appointment() {
             if (response.status === 201) {
                 setShowSuccess(true);
                 e.target.reset();
+                setTimeout(() => setShowSuccess(false), 3000);
             } else {
                 alert("Unexpected server response. Please try again.");
             }
